@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="fluent-hc-4.5.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/core/lib/fluent-hc-4.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/httpclient-4.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/httpclient-cache-4.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/httpclient-win-4.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/httpcore-4.4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/httpmime-4.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/jna-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/core/lib/jna-platform-4.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
