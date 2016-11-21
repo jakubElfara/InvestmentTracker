@@ -1,4 +1,4 @@
-package com.savingstream.tracker.core.model;
+package com.savingstream.tracker.core.data.model;
 
 import java.math.BigDecimal;
 import java.util.Currency;

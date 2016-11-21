@@ -1,6 +1,6 @@
-package com.savingstream.tracker.core.format;
+package com.savingstream.tracker.core.data.format;
 
-import com.savingstream.tracker.core.model.Money;
+import com.savingstream.tracker.core.data.model.Money;
 import com.savingstream.tracker.core.utils.NumberUtils;
 
 import java.util.regex.Matcher;

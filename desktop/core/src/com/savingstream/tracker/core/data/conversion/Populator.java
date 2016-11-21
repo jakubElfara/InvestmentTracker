@@ -1,4 +1,4 @@
-package com.savingstream.tracker.core.conversion;
+package com.savingstream.tracker.core.data.conversion;
 
 public interface Populator<SOURCE, TARGET>
 {

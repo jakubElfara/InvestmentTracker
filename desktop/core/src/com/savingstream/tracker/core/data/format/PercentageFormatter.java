@@ -1,4 +1,4 @@
-package com.savingstream.tracker.core.format;
+package com.savingstream.tracker.core.data.format;
 
 import com.savingstream.tracker.core.utils.NumberUtils;
 
