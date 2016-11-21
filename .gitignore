@@ -1,3 +1,4 @@
+desktop/.idea/workspace.xml
 desktop/out/
 desktop/core/src/config.properties
-desktop/.idea/workspace.xml
+desktop/core/src/com/savingstream/tracker/core/MainApplication.java
