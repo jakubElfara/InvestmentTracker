@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Managers -->
+
+    <alias name="defaultConfigurationManager" alias="configurationManager"/>
+    <bean id="defaultConfigurationManager"
+          class="com.savingstream.tracker.core.configuration.impl.DefaultConfigurationManager">
+        <property name="configurationFile" value="config.properties"/>
+    </bean>
+
+    <!-- Formatters -->
+
+    <bean id="booleanFormatter" class="com.savingstream.tracker.core.data.format.BooleanFormatter"/>
+
+    <bean id="moneyFormatter" class="com.savingstream.tracker.core.data.format.MoneyFormatter">
+        <property name="regularExpression" value="^([£])([\d,.]+)$"/>
+    </bean>
+
+    <bean id="percentageFormatter" class="com.savingstream.tracker.core.data.format.PercentageFormatter">
+        <property name="regularExpression" value="^([\d,.]+)%$"/>
+    </bean>
+
+    <bean id="termFormatter" class="com.savingstream.tracker.core.data.format.TermFormatter">
+        <property name="regularExpression" value="^(-?[\d,.]+)\s(day|days)$"/>
+    </bean>
+
+    <bean id="relativeUrlFormatter" class="com.savingstream.tracker.core.data.format.UrlFormatter">
+        <property name="regularExpression" value="^(\/[\da-z.-]+\/?)+$"/>
+    </bean>
+
+    <util:list id="formatterList" value-type="com.savingstream.tracker.core.data.format.Formatter">
+        <ref bean="booleanFormatter"/>
+        <ref bean="moneyFormatter"/>
+        <ref bean="percentageFormatter"/>
+        <ref bean="termFormatter"/>
+        <ref bean="relativeUrlFormatter"/>
+    </util:list>
+
+    <bean id="valueFormatter" class="com.savingstream.tracker.core.data.format.ComposedFormatter">
+        <property name="formatters" ref="formatterList"/>
+    </bean>
+
+    <!-- Converters -->
+
+    <bean id="abstractConverter" class="com.savingstream.tracker.core.data.conversion.AbstractConverter"
+          abstract="true"/>
+
+    <!-- Services -->
+
+    <alias name="savingStreamHttpClient" alias="httpClient"/>
+    <bean id="savingStreamHttpClient" class="com.savingstream.tracker.core.http.client.SavingStreamClient">
+        <property name="configurationManager" ref="configurationManager"/>
+    </bean>
+
+    <alias name="defaultHtmlParser" alias="htmlParser"/>
+    <bean id="defaultHtmlParser" class="com.savingstream.tracker.core.http.parser.HtmlTableParser">
+        <property name="valueFormatter" ref="valueFormatter"/>
+    </bean>
+
+    <alias name="defaultController" alias="controller"/>
+    <bean id="defaultController" class="com.savingstream.tracker.core.controller.Controller">
+        <property name="httpClient" ref="httpClient"/>
+        <property name="htmlParser" ref="htmlParser"/>
+    </bean>
+
+
+</beans>
