@@ -1,5 +1,6 @@
 package com.savingstream.tracker.core.data.model;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,9 @@ public class Results
     {
         entities.add(entity);
         fields.addAll(entity.getAttributes().keySet());
+
+        final Field key = fields.iterator().next();
+        entity.setKey(entity.getAttributes().get(key).toString());
     }
 
     public Set<Field> getFields()
@@ -27,7 +31,7 @@ public class Results
     {
         return entities;
     }
-
+    
     @Override
     public String toString()
     {

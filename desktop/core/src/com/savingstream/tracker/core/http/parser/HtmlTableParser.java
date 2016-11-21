@@ -52,8 +52,6 @@ public class HtmlTableParser implements HtmlParser
                     }
 
                     results.add(entity);
-
-                    entity.setKey(entity.getAttributes().get(results.getFields().iterator().next()).toString());
                 }
             });
         }
