@@ -31,7 +31,12 @@ public class Results
     {
         return entities;
     }
-    
+
+    public void sort(final Field sortField)
+    {
+        Collections.sort(entities, (o1, o2) -> o1.compareTo(o2, sortField));
+    }
+
     @Override
     public String toString()
     {

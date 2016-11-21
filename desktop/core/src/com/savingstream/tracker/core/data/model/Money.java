@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Locale;
 
+import static java.util.Objects.isNull;
+
 public class Money
 {
     private static final Locale DEFAULT_LOCALE = Locale.UK;
@@ -38,40 +40,49 @@ public class Money
         this(BigDecimal.valueOf(value));
     }
 
-    public Money divide(Money divisor)
+    public Money divide(Money money)
     {
-        checkMatchingCurrencies(divisor);
+        checkMatchingCurrencies(money);
 
-        return new Money(this.getValue().divide(divisor.getValue()), this.getCurrency());
+        return new Money(this.getValue().divide(money.getValue()), this.getCurrency());
     }
 
-    public Money multiply(Money divisor)
+    public Money multiply(Money money)
     {
-        checkMatchingCurrencies(divisor);
+        checkMatchingCurrencies(money);
 
-        return new Money(this.getValue().multiply(divisor.getValue()), this.getCurrency());
+        return new Money(this.getValue().multiply(money.getValue()), this.getCurrency());
     }
 
-    public Money subtract(Money divisor)
+    public Money subtract(Money money)
     {
-        checkMatchingCurrencies(divisor);
+        checkMatchingCurrencies(money);
 
-        return new Money(this.getValue().subtract(divisor.getValue()), this.getCurrency());
+        return new Money(this.getValue().subtract(money.getValue()), this.getCurrency());
     }
 
-    public Money add(Money divisor)
+    public Money add(Money money)
     {
-        checkMatchingCurrencies(divisor);
+        checkMatchingCurrencies(money);
 
-        return new Money(this.getValue().add(divisor.getValue()), this.getCurrency());
+        return new Money(this.getValue().add(money.getValue()), this.getCurrency());
     }
 
-    private void checkMatchingCurrencies(final Money divisor)
+    private void checkMatchingCurrencies(final Money money)
     {
-        if (!this.getCurrency().equals(divisor.getCurrency()))
+        if (!this.getCurrency().equals(money.getCurrency()))
         {
             throw new UnsupportedOperationException("Multiple currency operation not supported");
         }
+    }
+
+    public int compareTo(Money money)
+    {
+        checkMatchingCurrencies(money);
+
+        return (isNull(this.getValue())) ? -1 :
+                (isNull(money.getValue())) ? 1 :
+                        this.getValue().compareTo(money.getValue());
     }
 
     public BigDecimal getValue()
